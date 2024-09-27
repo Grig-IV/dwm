@@ -28,7 +28,14 @@
         defaultPackage = pkgs.dwm;
 
         devShell = pkgs.mkShell {
-          buildInputs = with pkgs; [xorg.libX11 xorg.libXft xorg.libXinerama gcc bear];
+          buildInputs = with pkgs; [
+            clang-tools
+            xorg.libX11
+            xorg.libXft
+            xorg.libXinerama
+            gcc
+            bear
+          ];
         };
       }
     );
