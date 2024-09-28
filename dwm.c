@@ -1925,7 +1925,7 @@ void updatesizehints(Client *c) {
 
 void updatestatus(void) {
     if (!gettextprop(root, XA_WM_NAME, stext, sizeof(stext)))
-        strcpy(stext, "dwm-" VERSION);
+        strcpy(stext, "grig-dwm");
     drawbar(selmon);
 }
 
@@ -2039,10 +2039,8 @@ void zoom(const Arg *arg) {
 }
 
 int main(int argc, char *argv[]) {
-    if (argc == 2 && !strcmp("-v", argv[1]))
-        die("dwm-" VERSION);
-    else if (argc != 1)
-        die("usage: dwm [-v]");
+    if (argc != 1)
+        die("No arguments expected");
     if (!setlocale(LC_CTYPE, "") || !XSupportsLocale())
         fputs("warning: no locale support\n", stderr);
     if (!(dpy = XOpenDisplay(NULL)))
