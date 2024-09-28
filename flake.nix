@@ -7,16 +7,14 @@
     pre-commit-hooks.url = "github:cachix/git-hooks.nix";
   };
 
-  outputs =
-    { self
-    , nixpkgs
-    , flake-utils
-    , pre-commit-hooks
-    ,
-    }:
+  outputs = {
+    self,
+    nixpkgs,
+    flake-utils,
+    pre-commit-hooks,
+  }:
     flake-utils.lib.eachDefaultSystem (
-      system:
-      let
+      system: let
         pkgs = import nixpkgs {
           inherit system;
           overlays = [
@@ -33,15 +31,14 @@
             alejandra.enable = true;
           };
         };
-      in
-      {
+      in {
         packages.dwm = pkgs.dwm;
 
         checks = {
           pre-commit-check = pre-commit;
         };
 
-        devShells.defualt = pkgs.mkShell {
+        devShells.default = pkgs.mkShell {
           buildInputs = with pkgs;
             [
               clang-tools
