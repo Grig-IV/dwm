@@ -29,6 +29,19 @@
           src = ./.;
           hooks = {
             alejandra.enable = true;
+            clean = {
+              enable = true;
+              name = "clean object files";
+              entry = "${pkgs.gnumake}/bin/make clean";
+              pass_filenames = false;
+            };
+            build-test = {
+              enable = true;
+              name = "run test build";
+              entry = "${pkgs.gnumake}/bin/make check";
+              pass_filenames = false;
+              stages = ["pre-push"];
+            };
           };
         };
       in {
