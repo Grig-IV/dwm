@@ -47,4 +47,6 @@ void debugm(const char *__restrict __format, ...) {
     va_end(args);
 
     printf("\n");
+
+    fflush(stdout);
 }
