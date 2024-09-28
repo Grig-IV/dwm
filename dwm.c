@@ -2045,6 +2045,9 @@ int main(int argc, char *argv[]) {
         fputs("warning: no locale support\n", stderr);
     if (!(dpy = XOpenDisplay(NULL)))
         die("dwm: cannot open display");
+
+    debugm("Starting dwm...");
+
     checkotherwm();
     setup();
     scan();

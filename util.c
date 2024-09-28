@@ -3,6 +3,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <time.h>
 
 #include "util.h"
 
@@ -29,4 +30,14 @@ void *ecalloc(size_t nmemb, size_t size) {
     if (!(p = calloc(nmemb, size)))
         die("calloc:");
     return p;
+}
+
+void debugm(const char *__restrict __format, ...) {
+    time_t now;
+    time(&now);
+    struct tm *local = localtime(&now);
+
+    printf("[%02d:%02d:%02d] ", local->tm_hour, local->tm_min, local->tm_sec);
+    printf(__format);
+    printf("\n");
 }
