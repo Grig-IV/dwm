@@ -2038,6 +2038,10 @@ void zoom(const Arg *arg) {
     pop(c);
 }
 
+void startup_spawn() {
+    spawn(&(Arg){.v = (const char *[]){"wezterm", "-e", "tmux-run", NULL}});
+}
+
 int main(int argc, char *argv[]) {
     if (argc != 1)
         die("No arguments expected");
@@ -2051,6 +2055,7 @@ int main(int argc, char *argv[]) {
     checkotherwm();
     setup();
     scan();
+    startup_spawn();
     run();
     cleanup();
     XCloseDisplay(dpy);
