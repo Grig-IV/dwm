@@ -2056,6 +2056,7 @@ void goto_client(const Arg *arg) {
                 if (c->tags & TAGMASK) {
                     selmon->tagset[selmon->seltags] = c->tags;
                     focus(c);
+                    arrange(selmon);
                     restack(selmon);
                 }
                 break;
