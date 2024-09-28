@@ -38,6 +38,13 @@ void debugm(const char *__restrict __format, ...) {
     struct tm *local = localtime(&now);
 
     printf("[%02d:%02d:%02d] ", local->tm_hour, local->tm_min, local->tm_sec);
-    printf(__format);
+
+    va_list args;
+    va_start(args, __format);
+
+    vprintf(__format, args);
+
+    va_end(args);
+
     printf("\n");
 }
