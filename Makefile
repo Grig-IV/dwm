@@ -25,4 +25,9 @@ clean:
 check: dwm
 	rm -f dwm ${OBJ} 
 
+install: all
+	mkdir -p ${DESTDIR}${PREFIX}/bin
+	cp -f dwm ${DESTDIR}${PREFIX}/bin
+	chmod 755 ${DESTDIR}${PREFIX}/bin/dwm
+
 .PHONY: all clean dist install uninstall
