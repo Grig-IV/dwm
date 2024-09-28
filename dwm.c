@@ -260,6 +260,7 @@ static int xerror(Display *dpy, XErrorEvent *ee);
 static int xerrordummy(Display *dpy, XErrorEvent *ee);
 static int xerrorstart(Display *dpy, XErrorEvent *ee);
 static void zoom(const Arg *arg);
+static void goto_client(const Arg *arg);
 
 /* variables */
 static const char broken[] = "broken";
@@ -2040,6 +2041,31 @@ void zoom(const Arg *arg) {
 
 void startup_spawn() {
     spawn(&(Arg){.v = (const char *[]){"wezterm", "-e", "tmux-run", NULL}});
+}
+
+void goto_client(const Arg *arg) {
+    Client *c;
+    const char *class;
+    XClassHint ch = {NULL, NULL};
+
+    for (c = selmon->clients; c; c = c->next) {
+        if (XGetClassHint(dpy, c->win, &ch)) {
+            class = ch.res_class ? ch.res_class : broken;
+
+            if (!strcmp(class, (const char *)arg->v)) {
+                if (c->tags & TAGMASK) {
+                    selmon->tagset[selmon->seltags] = c->tags;
+                    focus(c);
+                    restack(selmon);
+                }
+                break;
+            }
+        }
+        if (ch.res_class)
+            XFree(ch.res_class);
+        if (ch.res_name)
+            XFree(ch.res_name);
+    }
 }
 
 int main(int argc, char *argv[]) {
