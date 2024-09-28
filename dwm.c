@@ -2046,7 +2046,7 @@ int main(int argc, char *argv[]) {
     if (!(dpy = XOpenDisplay(NULL)))
         die("dwm: cannot open display");
 
-    debugm("Starting dwm...");
+    // debugm("Starting dwm...");
 
     checkotherwm();
     setup();
