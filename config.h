@@ -70,8 +70,8 @@ static const Key keys[] = {
 
 	{ MODKEY,                       XK_t,      goto_client,      {.v = "org.wezfurlong.wezterm"} },
 	{ MODKEY,                       XK_f,      goto_client,      {.v = "firefox"} },
-	{ MODKEY,                       XK_s,      goto_client,      {.v = "telegram-desktop"} },
-	{ MODKEY,                       XK_d,      goto_client,      {.v = "darktable"} },
+	{ MODKEY,                       XK_s,      goto_client,      {.v = "TelegramDesktop"} },
+	{ MODKEY,                       XK_d,      goto_client,      {.v = "Darktable"} },
 
 
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
