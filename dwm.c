@@ -2054,12 +2054,8 @@ void goto_client(const Arg *arg) {
             class = ch.res_class ? ch.res_class : broken;
 
             if (!strcmp(class, (const char *)arg->v)) {
-                if (c->tags & TAGMASK) {
-                    selmon->tagset[selmon->seltags] = c->tags;
-                    focus(c);
-                    arrange(selmon);
-                    restack(selmon);
-                }
+                view(&(Arg){.ui = c->tags});
+                focus(c);
                 break;
             }
         }
