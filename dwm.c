@@ -2041,7 +2041,6 @@ void zoom(const Arg *arg) {
 
 void startup_spawn() {
     spawn(&(Arg){.v = (const char *[]){"wezterm", "-e", "tmux-run", NULL}});
-    spawn(&(Arg){.v = (const char *[]){"firefox", NULL}});
 }
 
 void goto_client(const Arg *arg) {
