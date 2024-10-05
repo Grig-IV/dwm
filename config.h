@@ -24,8 +24,10 @@ static const char *colors[][3]      = {
 static const char *tags[] = { "1", "2", "3", "4", "5" };
 
 static const Rule rules[] = {
-	/* class      instance    title       tags mask     isfloating   monitor    select tag on creation*/
-	{ "firefox",  NULL,       NULL,       1 << 1,       0,           -1,        1},
+	/* class                instance    title       tags mask     isfloating   monitor    select tag on creation*/
+	{ "firefox",            NULL,       NULL,       1 << 1,       0,           -1,        1},
+	{ "TelegramDesktop",    NULL,       NULL,       1 << 2,       0,           -1,        1},
+	{ "Darktable",          NULL,       NULL,       1 << 3,       0,           -1,        1},
 };
 
 /* layout(s) */
