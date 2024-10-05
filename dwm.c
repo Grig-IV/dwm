@@ -260,8 +260,8 @@ static int xerror(Display *dpy, XErrorEvent *ee);
 static int xerrordummy(Display *dpy, XErrorEvent *ee);
 static int xerrorstart(Display *dpy, XErrorEvent *ee);
 static void zoom(const Arg *arg);
-static void goto_client(const Arg *arg);
-static void cycle_tags(const Arg *arg);
+static void gotoclient(const Arg *arg);
+static void cycletags(const Arg *arg);
 
 /* variables */
 static const char broken[] = "broken";
@@ -2044,7 +2044,7 @@ void startup_spawn() {
     spawn(&(Arg){.v = (const char *[]){"wezterm", "-e", "tmux-run", NULL}});
 }
 
-void goto_client(const Arg *arg) {
+void gotoclient(const Arg *arg) {
     Client *c;
     const char *class;
     XClassHint ch = {NULL, NULL};
@@ -2066,7 +2066,7 @@ void goto_client(const Arg *arg) {
     }
 }
 
-void cycle_tags(const Arg *arg) {
+void cycletags(const Arg *arg) {
     Arg newArg = {0};
     unsigned int curr_tags = selmon->tagset[selmon->seltags];
 

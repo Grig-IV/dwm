@@ -67,14 +67,14 @@ static const Key keys[] = {
 	{ MODKEY|Mod1Mask,              XK_p,           spawn,          {.v = dmenucmd } },
 	{ MODKEY,                       XK_p,           spawn,          {.v = dmenucmd } },
 	{ MODKEY|Mod1Mask,              XK_q,           killclient,     {0} },
-	{ MODKEY|ControlMask,           XK_Page_Up,     cycle_tags,     {.i = -1} },
-	{ MODKEY|ControlMask,           XK_Page_Down,   cycle_tags,     {.i = 1} },
+	{ MODKEY|ControlMask,           XK_Page_Up,     cycletags,     {.i = -1} },
+	{ MODKEY|ControlMask,           XK_Page_Down,   cycletags,     {.i = 1} },
 
 
-	{ MODKEY,                       XK_t,      goto_client,      {.v = "org.wezfurlong.wezterm"} },
-	{ MODKEY,                       XK_f,      goto_client,      {.v = "firefox"} },
-	{ MODKEY,                       XK_s,      goto_client,      {.v = "TelegramDesktop"} },
-	{ MODKEY,                       XK_d,      goto_client,      {.v = "Darktable"} },
+	{ MODKEY,                       XK_t,      gotoclient,      {.v = "org.wezfurlong.wezterm"} },
+	{ MODKEY,                       XK_f,      gotoclient,      {.v = "firefox"} },
+	{ MODKEY,                       XK_s,      gotoclient,      {.v = "TelegramDesktop"} },
+	{ MODKEY,                       XK_d,      gotoclient,      {.v = "Darktable"} },
 
 
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
