@@ -28,8 +28,8 @@ static const Rule rules[] = {
 	 *	WM_CLASS(STRING) = instance, class
 	 *	WM_NAME(STRING) = title
 	 */
-	/* class      instance    title       tags mask     isfloating   monitor */
-	{ "firefox",  NULL,       NULL,       1 << 1,       0,           -1 },
+	/* class      instance    title       tags mask     isfloating   monitor    select tag on creation*/
+	{ "firefox",  NULL,       NULL,       1 << 1,       0,           -1,        1},
 };
 
 /* layout(s) */

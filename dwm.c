@@ -165,6 +165,7 @@ typedef struct {
     unsigned int tags;
     int isfloating;
     int monitor;
+    int selecttagoncreation;
 } Rule;
 
 /* function declarations */
@@ -326,6 +327,9 @@ void applyrules(Client *c) {
             (!r->instance || strstr(instance, r->instance))) {
             c->isfloating = r->isfloating;
             c->tags |= r->tags;
+            if (r->selecttagoncreation) {
+                view(&(Arg){.ui = r->tags});
+            }
             for (m = mons; m && m->num != r->monitor; m = m->next)
                 ;
             if (m)
