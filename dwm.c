@@ -2068,6 +2068,11 @@ void gotoclient(const Arg *arg) {
         if (ch.res_name)
             XFree(ch.res_name);
     }
+
+    if (ch.res_class)
+        XFree(ch.res_class);
+    if (ch.res_name)
+        XFree(ch.res_name);
 }
 
 void cycletags(const Arg *arg) {
