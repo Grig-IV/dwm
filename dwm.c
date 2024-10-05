@@ -261,6 +261,7 @@ static int xerrordummy(Display *dpy, XErrorEvent *ee);
 static int xerrorstart(Display *dpy, XErrorEvent *ee);
 static void zoom(const Arg *arg);
 static void goto_client(const Arg *arg);
+static void cycle_tags(const Arg *arg);
 
 /* variables */
 static const char broken[] = "broken";
@@ -2063,6 +2064,19 @@ void goto_client(const Arg *arg) {
         if (ch.res_name)
             XFree(ch.res_name);
     }
+}
+
+void cycle_tags(const Arg *arg) {
+    Arg newArg = {0};
+    unsigned int curr_tags = selmon->tagset[selmon->seltags];
+
+    if (arg->i < 0) {
+        newArg.ui = curr_tags >> 1 | curr_tags << (LENGTH(tags) - 1);
+    } else if (arg->i > 0) {
+        newArg.ui = curr_tags << 1 | curr_tags >> (LENGTH(tags) - 1);
+    }
+
+    view(&newArg);
 }
 
 int main(int argc, char *argv[]) {

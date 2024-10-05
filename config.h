@@ -64,9 +64,12 @@ static const char *termcmd[]  = { "st", NULL };
 
 static const Key keys[] = {
 	/* modifier                     key        function        argument */
-	{ MODKEY|Mod1Mask,              XK_p,      spawn,          {.v = dmenucmd } },
-	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
-	{ MODKEY|Mod1Mask,              XK_q,      killclient,     {0} },
+	{ MODKEY|Mod1Mask,              XK_p,           spawn,          {.v = dmenucmd } },
+	{ MODKEY,                       XK_p,           spawn,          {.v = dmenucmd } },
+	{ MODKEY|Mod1Mask,              XK_q,           killclient,     {0} },
+	{ MODKEY|ControlMask,           XK_Page_Up,     cycle_tags,     {.i = -1} },
+	{ MODKEY|ControlMask,           XK_Page_Down,   cycle_tags,     {.i = 1} },
+
 
 	{ MODKEY,                       XK_t,      goto_client,      {.v = "org.wezfurlong.wezterm"} },
 	{ MODKEY,                       XK_f,      goto_client,      {.v = "firefox"} },
