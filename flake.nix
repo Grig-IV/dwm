@@ -38,7 +38,7 @@
           };
         };
       in {
-        packages.dwm = pkgs.dwm;
+        packages.default = pkgs.dwm;
 
         checks = {
           pre-commit-check = pre-commit;
