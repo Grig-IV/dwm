@@ -2078,7 +2078,7 @@ void gotoclientorcreate(const Arg *arg) {
 
     if (!clientisfound) {
         // spawn(&(Arg){.v = &((const char **)arg->v)[1]});
-        debugm("Client '%s' not found", ((char **)arg->v)[0]);
+        // debugm("Client '%s' not found", ((char **)arg->v)[0]);
     }
 }
 
