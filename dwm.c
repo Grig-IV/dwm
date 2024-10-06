@@ -261,7 +261,7 @@ static int xerror(Display *dpy, XErrorEvent *ee);
 static int xerrordummy(Display *dpy, XErrorEvent *ee);
 static int xerrorstart(Display *dpy, XErrorEvent *ee);
 static void zoom(const Arg *arg);
-static void gotoclient(const Arg *arg);
+static void gotoclientorcreate(const Arg *arg);
 static void cycletags(const Arg *arg);
 
 /* variables */
@@ -2048,18 +2048,20 @@ void startup_spawn() {
     spawn(&(Arg){.v = (const char *[]){"wezterm", "-e", "tmux-run", NULL}});
 }
 
-void gotoclient(const Arg *arg) {
+void gotoclientorcreate(const Arg *arg) {
     Client *c;
     const char *class;
     XClassHint ch = {NULL, NULL};
+    int clientisfound = 0;
 
     for (c = selmon->clients; c; c = c->next) {
         if (XGetClassHint(dpy, c->win, &ch)) {
             class = ch.res_class ? ch.res_class : broken;
 
-            if (!strcmp(class, (const char *)arg->v)) {
+            if (!strcmp(class, ((char **)arg->v)[0])) {
                 view(&(Arg){.ui = c->tags});
                 focus(c);
+                clientisfound = 1;
                 break;
             }
         }
@@ -2073,6 +2075,11 @@ void gotoclient(const Arg *arg) {
         XFree(ch.res_class);
     if (ch.res_name)
         XFree(ch.res_name);
+
+    if (!clientisfound) {
+        // spawn(&(Arg){.v = &((const char **)arg->v)[1]});
+        debugm("Client '%s' not found", ((char **)arg->v)[0]);
+    }
 }
 
 void cycletags(const Arg *arg) {

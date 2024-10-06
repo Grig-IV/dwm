@@ -64,10 +64,10 @@ static const Key keys[] = {
 	{ MODKEY|ControlMask,           XK_Page_Down,   cycletags,     {.i = 1} },
 
 
-	{ MODKEY,                       XK_t,      gotoclient,      {.v = "org.wezfurlong.wezterm"} },
-	{ MODKEY,                       XK_f,      gotoclient,      {.v = "firefox"} },
-	{ MODKEY,                       XK_s,      gotoclient,      {.v = "TelegramDesktop"} },
-	{ MODKEY,                       XK_d,      gotoclient,      {.v = "Darktable"} },
+	{ MODKEY,                       XK_t,      gotoclientorcreate,      {.v = (const char*[]){"org.wezfurlong.wezterm", "wezterm", NULL}} },
+	{ MODKEY,                       XK_f,      gotoclientorcreate,      {.v = (const char*[]){"firefox", "firefox", NULL}} },
+	{ MODKEY,                       XK_s,      gotoclientorcreate,      {.v = (const char*[]){"TelegramDesktop", "telegram-desktop", NULL}} },
+	{ MODKEY,                       XK_d,      gotoclientorcreate,      {.v = (const char*[]){"Darktable", "darktable", NULL}} },
 
 
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
