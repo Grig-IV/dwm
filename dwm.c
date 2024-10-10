@@ -2044,25 +2044,22 @@ void zoom(const Arg *arg) {
     pop(c);
 }
 
-void startup_spawn() {
-    spawn(&(Arg){.v = (const char *[]){"wezterm", "-e", "tmux-run", NULL}});
-}
-
-void gotoclientorcreate(const Arg *arg) {
+Client *find_client_by_class(char *target_class) {
     Client *c;
-    const char *class;
+    const char *client_class;
     XClassHint ch = {NULL, NULL};
-    int clientisfound = 0;
 
     for (c = selmon->clients; c; c = c->next) {
         if (XGetClassHint(dpy, c->win, &ch)) {
-            class = ch.res_class ? ch.res_class : broken;
+            client_class = ch.res_class ? ch.res_class : broken;
 
-            if (!strcmp(class, ((char **)arg->v)[0])) {
-                view(&(Arg){.ui = c->tags});
-                focus(c);
-                clientisfound = 1;
-                break;
+            if (!strcmp(client_class, target_class)) {
+                if (ch.res_class)
+                    XFree(ch.res_class);
+                if (ch.res_name)
+                    XFree(ch.res_name);
+
+                return c;
             }
         }
         if (ch.res_class)
@@ -2071,14 +2068,21 @@ void gotoclientorcreate(const Arg *arg) {
             XFree(ch.res_name);
     }
 
-    if (ch.res_class)
-        XFree(ch.res_class);
-    if (ch.res_name)
-        XFree(ch.res_name);
+    return NULL;
+}
 
-    if (!clientisfound) {
-        // spawn(&(Arg){.v = &((const char **)arg->v)[1]});
-        // debugm("Client '%s' not found", ((char **)arg->v)[0]);
+void startup() {
+    Client *c = find_client_by_class("org.wezfurlong.wezterm");
+    if (c == NULL) {
+        spawn(&(Arg){.v = (const char *[]){"wezterm", "-e", "tmux-run", NULL}});
+    }
+}
+
+void gotoclientorcreate(const Arg *arg) {
+    Client *c = find_client_by_class(((char **)arg->v)[0]);
+    if (c) {
+        view(&(Arg){.ui = c->tags});
+        focus(c);
     }
 }
 
@@ -2108,7 +2112,7 @@ int main(int argc, char *argv[]) {
     checkotherwm();
     setup();
     scan();
-    startup_spawn();
+    startup();
     run();
     cleanup();
     XCloseDisplay(dpy);
