@@ -1,3 +1,4 @@
 .pre-commit-config.yaml
 *.o
 dwm
+dwm.log
