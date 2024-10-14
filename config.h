@@ -8,7 +8,6 @@ static const unsigned int snap      = 32;       /* snap pixel */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
 static const char *fonts[]          = { "monospace:size=10" };
-static const char dmenufont[]       = "monospace:size=10";
 static const char col_gray1[]       = "#222222";
 static const char col_gray2[]       = "#444444";
 static const char col_gray3[]       = "#bbbbbb";
@@ -52,13 +51,9 @@ static const Layout layouts[] = {
 	{ MODKEY|ControlMask|ShiftMask, KEY,      toggletag,      {.ui = 1 << TAG} },
 
 /* commands */
-static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
-static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
-
 static const Key keys[] = {
 	/* modifier                     key        function        argument */
-	{ MODKEY|Mod1Mask,              XK_p,           spawn,          {.v = dmenucmd } },
-	{ MODKEY,                       XK_p,           spawn,          {.v = dmenucmd } },
+	{ MODKEY|Mod1Mask|ControlMask,  XK_q,           quit,           {0} },
 	{ MODKEY|Mod1Mask,              XK_q,           killclient,     {0} },
 	{ MODKEY|ControlMask,           XK_Page_Up,     cycletags,     {.i = -1} },
 	{ MODKEY|ControlMask,           XK_Page_Down,   cycletags,     {.i = 1} },
@@ -99,7 +94,6 @@ static const Key keys[] = {
 	TAGKEYS(                        XK_7,                      6)
 	TAGKEYS(                        XK_8,                      7)
 	TAGKEYS(                        XK_9,                      8)
-	{ MODKEY|Mod1Mask|ControlMask,  XK_q,      quit,           {0} },
 };
 
 /* button definitions */
