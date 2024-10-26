@@ -313,8 +313,8 @@ void applyrules(Client *c) {
     Monitor *m;
     XClassHint ch = {NULL, NULL};
 
-    /* rule matching */
-    c->isfloating = 0;
+        /* rule matching */
+        c->isfloating = 0;
     c->tags = 0;
     XGetClassHint(dpy, c->win, &ch);
     class = ch.res_class ? ch.res_class : broken;
@@ -1527,6 +1527,7 @@ void setup(void) {
     wmatom[WMState] = XInternAtom(dpy, "WM_STATE", False);
     wmatom[WMTakeFocus] = XInternAtom(dpy, "WM_TAKE_FOCUS", False);
     netatom[NetActiveWindow] = XInternAtom(dpy, "_NET_ACTIVE_WINDOW", False);
+    debugm("NetActiveWindow %d", netatom[NetActiveWindow]);
     netatom[NetSupported] = XInternAtom(dpy, "_NET_SUPPORTED", False);
     netatom[NetWMName] = XInternAtom(dpy, "_NET_WM_NAME", False);
     netatom[NetWMState] = XInternAtom(dpy, "_NET_WM_STATE", False);
