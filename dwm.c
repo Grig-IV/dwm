@@ -957,7 +957,6 @@ void grabkeys(void) {
 
         XUngrabKey(dpy, AnyKey, AnyModifier, root);
         XDisplayKeycodes(dpy, &start, &end);
-        debugm("%d - %d", start, end);
         syms = XGetKeyboardMapping(dpy, start, end - start + 1, &skip);
         if (!syms)
             return;
